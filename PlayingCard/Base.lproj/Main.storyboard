@@ -18,16 +18,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ufc-86-f2z" customClass="PlayingCardView" customModule="PlayingCard" customModuleProvider="target">
-                                <rect key="frame" x="16" y="44" width="343" height="734"/>
+                                <rect key="frame" x="16" y="136.66666666666669" width="343" height="548.66666666666652"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="800" id="OO4-bO-xCg"/>
+                                    <constraint firstAttribute="width" secondItem="ufc-86-f2z" secondAttribute="height" multiplier="5:8" id="wMd-Fb-wCB"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.59986203090000001" blue="0.1404358513" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ufc-86-f2z" secondAttribute="trailing" constant="16" id="8TR-FF-8Sp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ufc-86-f2z" secondAttribute="bottom" id="B3R-MC-gDH"/>
-                            <constraint firstItem="ufc-86-f2z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="R39-i0-t7r"/>
-                            <constraint firstItem="ufc-86-f2z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qLu-CU-nEA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ufc-86-f2z" secondAttribute="trailing" constant="16" id="8TR-FF-8Sp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ufc-86-f2z" secondAttribute="bottom" constant="16" id="B3R-MC-gDH"/>
+                            <constraint firstItem="ufc-86-f2z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="R39-i0-t7r"/>
+                            <constraint firstItem="ufc-86-f2z" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YTZ-xU-xpF"/>
+                            <constraint firstItem="ufc-86-f2z" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="dwM-hd-qL5"/>
+                            <constraint firstItem="ufc-86-f2z" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="qLu-CU-nEA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
