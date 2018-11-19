@@ -14,6 +14,13 @@ class PlayingCardView: UIView {
     var suit: String = "♥️" { didSet {setNeedsDisplay(); setNeedsLayout()} }
     var isFaceUp: Bool = true { didSet {setNeedsDisplay(); setNeedsLayout()} }
     
+    private var corenerString: NSAttributedString {
+        return centeredAttributedString(rankString+"\n"+suit, fontSize: cornerFontSize)
+    }
+    
+    private lazy var upperLeftCornerLabel = createCornerLabel()
+    private lazy var lowerRightCornerLabel = createCornerLabel()
+    
     private func centeredAttributedString(_ string: String, fontSize: CGFloat) -> NSAttributedString {
         var font = UIFont.preferredFont(forTextStyle: .body).withSize(fontSize)
         font = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
@@ -21,13 +28,6 @@ class PlayingCardView: UIView {
         paragraphStyle.alignment = .center
         return NSAttributedString(string: string, attributes: [.paragraphStyle: paragraphStyle, .font:font])
     }
-    
-    private var corenerString: NSAttributedString {
-        return centeredAttributedString(rankString+"\n"+suit, fontSize: cornerFontSize)
-    }
-    
-    private lazy var upperLeftCornerLabel = createCornerLabel()
-    private lazy var lowerRightCornerLabel = createCornerLabel()
     
     private func createCornerLabel() -> UILabel {
         let label = UILabel()
@@ -123,7 +123,7 @@ class PlayingCardView: UIView {
             faceCardImage.draw(in: bounds.zoom(by: SizeRatio.facesCardImageSizeToBoundsSize))
         } else {
             drawPips()
-    }
+        }
     }
 
 }
