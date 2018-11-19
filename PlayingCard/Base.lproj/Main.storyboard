@@ -24,6 +24,11 @@
                                     <constraint firstAttribute="width" priority="750" constant="800" id="OO4-bO-xCg"/>
                                     <constraint firstAttribute="width" secondItem="ufc-86-f2z" secondAttribute="height" multiplier="5:8" id="wMd-Fb-wCB"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rank">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.59986203090000001" blue="0.1404358513" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
