@@ -12,11 +12,13 @@ import UIKit
 class PlayingCardView: UIView {
     
     @IBInspectable
-    var rank: Int = 12 { didSet {setNeedsDisplay(); setNeedsLayout()} }
+    var rank: Int = 7 { didSet {setNeedsDisplay(); setNeedsLayout()} }
     @IBInspectable
     var suit: String = "♥️" { didSet {setNeedsDisplay(); setNeedsLayout()} }
     @IBInspectable
     var isFaceUp: Bool = true { didSet {setNeedsDisplay(); setNeedsLayout()} }
+    
+    var faceCardScale: CGFloat = SizeRatio.facesCardImageSizeToBoundsSize { didSet { setNeedsDisplay()} }
     
     private var corenerString: NSAttributedString {
         return centeredAttributedString(rankString+"\n"+suit, fontSize: cornerFontSize)
@@ -107,6 +109,15 @@ class PlayingCardView: UIView {
             }
         }
     }
+    
+    @objc func adjustFaceCardScale(byHandlingGestureRecognizedBy recognizer: UIPinchGestureRecognizer) {
+        switch recognizer.state {
+        case .changed, .ended:
+            faceCardScale *= recognizer.scale
+            recognizer.scale = 1.0
+        default: break
+        }
+    }
 
    override func draw(_ rect: CGRect) {
     
@@ -125,7 +136,7 @@ class PlayingCardView: UIView {
     
         if isFaceUp {
             if let faceCardImage = UIImage(named: rankString+suit, in: Bundle(for: self.classForCoder), compatibleWith: traitCollection) {
-                faceCardImage.draw(in: bounds.zoom(by: SizeRatio.facesCardImageSizeToBoundsSize))
+                faceCardImage.draw(in: bounds.zoom(by: faceCardScale))
             } else {
                 drawPips()
             }
