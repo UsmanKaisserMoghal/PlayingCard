@@ -73,7 +73,11 @@ class ViewController: UIViewController {
                                             }
                                     },
                                         completion: { position in
-                                            
+                                            self.faceUpCardViews.forEach {
+                                                $0.isHidden = true
+                                                $0.alpha = 1
+                                                $0.transform = .identity
+                                            }
                                     })
                             })
                         } else {
