@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         switch recognizer.state {
         case .ended:
             if  let chosenCardView = recognizer.view as? PlayingCardView {
+                cardBehavior.removeItem(chosenCardView)
                 UIView.transition(
                     with: chosenCardView,
                     duration: 0.5,
@@ -83,18 +84,25 @@ class ViewController: UIViewController {
                                                 $0.alpha = 1
                                                 $0.transform = .identity
                                             }
-                                    })
-                            })
-                        } else {
-                            if self.faceUpCardViews.count == 2 {
-                                self.faceUpCardViews.forEach{ cardView in
-                                    UIView.transition(
-                                        with: cardView,
-                                        duration: 0.5,
-                                        options: [.transitionFlipFromLeft],
-                                        animations: { cardView.isFaceUp = false }
+                                        }
                                     )
                                 }
+                            )
+                        } else if self.faceUpCardViews.count == 2 {
+                            self.faceUpCardViews.forEach{ cardView in
+                                UIView.transition(
+                                    with: cardView,
+                                    duration: 0.5,
+                                    options: [.transitionFlipFromLeft],
+                                    animations: { cardView.isFaceUp = false },
+                                    completion: { finished in
+                                        self.cardBehavior.addItem(cardView)
+                                    }
+                                )
+                            }
+                        } else {
+                            if !chosenCardView.isFaceUp {
+                                self.cardBehavior.addItem(chosenCardView)
                             }
                         }
                     }
