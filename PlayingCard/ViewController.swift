@@ -46,10 +46,13 @@ class ViewController: UIViewController {
         }
     }
     
+    var lastChosenCardView: PlayingCardView?
+    
     @objc func flipCard (_ recognizer: UITapGestureRecognizer){
         switch recognizer.state {
         case .ended:
             if  let chosenCardView = recognizer.view as? PlayingCardView, faceUpCardViews.count < 2 {
+                lastChosenCardView = chosenCardView
                 cardBehavior.removeItem(chosenCardView)
                 UIView.transition(
                     with: chosenCardView,
@@ -90,16 +93,18 @@ class ViewController: UIViewController {
                                 }
                             )
                         } else if self.faceUpCardViews.count == 2 {
-                            self.faceUpCardViews.forEach{ cardView in
-                                UIView.transition(
-                                    with: cardView,
-                                    duration: 0.5,
-                                    options: [.transitionFlipFromLeft],
-                                    animations: { cardView.isFaceUp = false },
-                                    completion: { finished in
-                                        self.cardBehavior.addItem(cardView)
-                                    }
-                                )
+                            if chosenCardView == self.lastChosenCardView {
+                                self.faceUpCardViews.forEach{ cardView in
+                                    UIView.transition(
+                                        with: cardView,
+                                        duration: 0.5,
+                                        options: [.transitionFlipFromLeft],
+                                        animations: { cardView.isFaceUp = false },
+                                        completion: { finished in
+                                            self.cardBehavior.addItem(cardView)
+                                        }
+                                    )
+                                }
                             }
                         } else {
                             if !chosenCardView.isFaceUp {
